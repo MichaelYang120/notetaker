@@ -83,6 +83,10 @@ if [ -z "${input}" ]; then
 	echo "original file location: run to see: nvim ${file}";
 	exit;
 fi
+# if input \n is in the input, then \\n
+if [[ "${input}" == *"\\"* ]]; then
+	input=$(echo ${input} | sed 's/\\/\\\\/g');
+fi
 date=$(date +"%Y-%m-%d");
 time=$(date +"%H:%M:%S");
 echo -e "${date}, ${time}, ${input}\n" >> ${file};
