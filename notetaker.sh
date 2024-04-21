@@ -87,6 +87,10 @@ fi
 if [[ "${input}" == *"\\"* ]]; then
 	input=$(echo ${input} | sed 's/\\/\\\\/g');
 fi
+# if input , is in the input, then U+002C
+if [[ "${input}" == *","* ]]; then
+	input=$(echo ${input} | sed 's/,/U+002C/g');
+fi
 date=$(date +"%Y-%m-%d");
 time=$(date +"%H:%M:%S");
 echo -e "${date}, ${time}, ${input}\n" >> ${file};
